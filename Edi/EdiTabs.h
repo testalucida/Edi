@@ -3,8 +3,10 @@
 
 #include <FL/Fl_Tabs.H>
 
-class EdiGrp;
-
+/**
+ * Two EdiTab objects are contained in EdiTile.
+ * Each of them contain 0...n EdiTabTile objects
+ */
 class EdiTabs : public Fl_Tabs {
 public:
     EdiTabs( int x, int y, int w, int h, const char* pLbl=NULL );

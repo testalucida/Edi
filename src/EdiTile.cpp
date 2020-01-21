@@ -1,6 +1,7 @@
 #include <Edi/EdiTile.h>
 #include <Edi/Explorer.h>
-#include <Edi/EdiGrp.h>
+#include <Edi/EdiTabs.h>
+#include <Edi/MessagePanel.h>
 #include <Edi/constants.h>
 
 EdiTile::EdiTile( int x, int y, int w, int h )
@@ -20,13 +21,13 @@ EdiTile::EdiTile( int x, int y, int w, int h )
     //Explorer to the left:
     _pExplorer = new Explorer( 0, y, EXPLORERWIDTH, H );
 
-    //2 Editorgroups to the right
+    //2 EdiTab objects right of explorer
     int x1 = _pExplorer->x() + _pExplorer->w();
     int w1 = (w-_pExplorer->w()) / 2;
-    _pEdiGrp1 = new EdiGrp( x1, y, w1, H );
-    int x2 = _pEdiGrp1->x() + _pEdiGrp1->w();
+    _pEdiTabsLeft = new EdiTabs( x1, y, w1, H );
+    int x2 = _pEdiTabsLeft->x() + _pEdiTabsLeft->w();
     int w2 = w - _pExplorer->w() - w1;
-    _pEdiGrp2 = new EdiGrp( x2, y, w2, H );
+    _pEdiTabsRight = new EdiTabs( x2, y, w2, H );
 
     //MessagePanel to the bottom
 

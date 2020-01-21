@@ -5,9 +5,15 @@
 #include <Edi/constants.h>
 
 class Explorer;
-class EdiGrp;
+class EdiTabs;
 class Editor;
+class MessagePanel;
 
+/**
+ * Main Tile of Edi.
+ * Contanis 1 Explorer object, 1 MessagePanel object
+ * and 2 EdiTabs objects
+ */
 class EdiTile : public Fl_Tile {
     public:
         EdiTile( int x, int y, int w, int h );
@@ -15,8 +21,10 @@ class EdiTile : public Fl_Tile {
         Editor* getEditor( int which ) const;
     private:
         Explorer* _pExplorer;
-        EdiGrp* _pEdiGrp1;
-        EdiGrp* _pEdiGrp2;
+        EdiTabs* _pEdiTabsLeft;
+        EdiTabs* _pEdiTabsRight;
+        MessagePanel* _pMsgPanel;
+
 };
 
 #endif
