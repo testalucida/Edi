@@ -14,3 +14,7 @@ EdiTabTile::EdiTabTile( int x, int y, int w, int h )
 EdiGrp* EdiTabTile::getEdiGrp( whichGrp grp ) const { 
     return (grp == TOP) ?_pEdiGrpTop : _pEdiGrpBottom; 
 }
+
+EdiGrp* EdiTabTile::getLastFocusedEdiGrp() const {
+
+}

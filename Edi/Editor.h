@@ -28,6 +28,8 @@ class Editor : public Fl_Text_Editor {
         static int compare_keywords( const void *a, const void *b );
         int check_save();
         
+        int handle( int );
+        
     private:
         EdiBuffer* _pTextbuffer = NULL;
         Fl_Text_Buffer* _pStylebuffer = NULL;

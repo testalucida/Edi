@@ -5,6 +5,7 @@
 #include <Edi/markups.h>
 #include <FL/fl_ask.H>
 #include <FL/Fl_Choice.H>
+#include <my/datetime.h>
 
 Editor::Editor(int x, int y, int w, int h)
     : Fl_Text_Editor(x, y, w, h)
@@ -248,6 +249,17 @@ void Editor::style_parse( const char *text, char *style, int length ) {
       if (current == 'B' || current == 'E') current = 'A';
     }
   }
+}
+
+int Editor::handle( int evt ) {
+    switch( evt ) {
+      case FL_FOCUS:
+      break;
+      case FL_UNFOCUS:
+      my::MyTimestamp ts( true );
+      break;
+    }
+    return Fl_Text_Editor::handle( evt );
 }
 
 

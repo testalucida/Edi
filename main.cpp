@@ -10,7 +10,7 @@
 #include <Edi/MenuBar.h>
 #include <Edi/EdiGrp.h>
 #include <Edi/includes.h>
-#include <Edi/EdiTile.h>
+#include <Edi/MainTile.h>
 #include <Edi/EdiController.h>
 #include <Edi/OutlineManager.h>
 #include <Edi/Tree.h>
@@ -50,15 +50,17 @@ int main( int argc, char** argv ) {
       new Fl_Double_Window( 100, 100, 900, 700, "Tiny C++ IDE" );
   MenuBar* pMenuBar = new MenuBar( 0, 0, 900 );
 
-  EdiTile* pMainTile = new EdiTile( 0, pMenuBar->h(), pWin->w(), 
+  MainTile* pMainTile = new MainTile( 0, pMenuBar->h(), pWin->w(), 
                                     pWin->h() - pMenuBar->h() );
 
   pWin->end();
   pWin->resizable( pMainTile );
 
+/*
   EdiController ctrl1( pMainTile->getEditor( 1 ) );
   EdiController ctrl2( pMainTile ->getEditor( 2 ) );
   ctrl1.loadFile( "/home/martin/kannweg.cpp" );
+  */
   
   pWin->show();
   return Fl::run();

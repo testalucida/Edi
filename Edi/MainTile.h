@@ -1,8 +1,9 @@
-#ifndef EDITILE_H
-#define EDITILE_H
+#ifndef MAINTILE_H
+#define MAINTILE_H
 
 #include <FL/Fl_Tile.H>
 #include <Edi/constants.h>
+#include <Edi/enums.h>
 
 class Explorer;
 class EdiTabs;
@@ -14,11 +15,10 @@ class MessagePanel;
  * Contanis 1 Explorer object, 1 MessagePanel object
  * and 2 EdiTabs objects
  */
-class EdiTile : public Fl_Tile {
+class MainTile : public Fl_Tile {
     public:
-        EdiTile( int x, int y, int w, int h );
-        ~EdiTile() {}
-        Editor* getEditor( int which ) const;
+        MainTile( int x, int y, int w, int h );
+        ~MainTile() {}
     private:
         Explorer* _pExplorer;
         EdiTabs* _pEdiTabsLeft;

@@ -1,10 +1,10 @@
-#include <Edi/EdiTile.h>
+#include <Edi/MainTile.h>
 #include <Edi/Explorer.h>
 #include <Edi/EdiTabs.h>
 #include <Edi/MessagePanel.h>
 #include <Edi/constants.h>
 
-EdiTile::EdiTile( int x, int y, int w, int h )
+MainTile::MainTile( int x, int y, int w, int h )
 : Fl_Tile( x, y, w, h )
 {
     box(FL_FLAT_BOX);
@@ -33,9 +33,4 @@ EdiTile::EdiTile( int x, int y, int w, int h )
 
     end();
     
-}
-
-Editor* EdiTile::getEditor( int which ) const {
-    return (which == 1 ) ? _pEdiGrp1->getEditor() :
-                           _pEdiGrp2->getEditor();
 }

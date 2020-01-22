@@ -2,13 +2,10 @@
 #define EDITABTILE_H
 
 #include <FL/Fl_Tile.H>
+#include <Edi/enums.h>
 
 class EdiGrp;
 
-enum whichGrp {
-    TOP = 0,
-    BOTTOM = 1
-} ;
 
 /**
  * Each EdiTabTile contains 2 EdiGrp objects
@@ -18,7 +15,11 @@ class EdiTabTile : public Fl_Tile {
 public:
     EdiTabTile( int x, int y, int w, int h );
     ~EdiTabTile() {}
+    /**
+     * Get top or bottom EdiGrp
+     */
     EdiGrp* getEdiGrp( whichGrp grp ) const;
+    EdiGrp* getLastFocusedEdiGrp() const;
 private:
     EdiGrp* _pEdiGrpTop;
     EdiGrp* _pEdiGrpBottom;
