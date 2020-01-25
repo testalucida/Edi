@@ -1,0 +1,34 @@
+mb:MenuBar
+pec:ProjectEventController
+gh:GuiHelper
+/ec:EdiController
+/buf:EdiBuffer
+tabs:EdiTabs
+/tabtile:EdiTabTile
+/eg:EdiGrp [a]
+/edi:Editor
+
+
+mb:pec.onOpenFile()
+pec:filename=pec.queryFilename()&
+pec:EdiTabs*=gh.getLastFocusedEdiTabs
+pec:EdiTabTile*=tabs.addTabTile(filename)
+tabs:tabtile.new(filename)
+tabtile:eg.new()
+eg:edi.new()
+pec:ec.new(EdiTabTile*, filename)
++2 ec
+There's ONE EdiController for each
+one EdiTabTile/EdiGrp/Editor/EdiBuffer
++2
+pec:ec.loadFile()
+ec:EdiBuffer*=buf.new()
+ec:buf.loadfile(filename)&
++1 eg
+EdiGroup contains not only an Editor object 
+but also a RowHeader object.
+This is irrelevant here.
++1
+ec:Editor*=tabtile.getEditor()
+ec:edi.setBuffer(EdiBuffer*)
+edi:edi.style_parse()

@@ -25,3 +25,8 @@ EdiGrp* EdiTabTile::getLastFocusedEdiGrp() const {
 void EdiTabTile::setBuffer( EdiBuffer* pBuf ) {
     _pEdiGrpTop->getEditor()->buffer( pBuf );
 }
+
+Editor* EdiTabTile::getEditor( whichGrp grp ) {
+    return ( grp == TOP ) ? _pEdiGrpTop->getEditor() 
+                          : _pEdiGrpBottom->getEditor();
+}

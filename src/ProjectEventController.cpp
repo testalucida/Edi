@@ -4,6 +4,7 @@
 #include <Edi/EdiTabTile.h>
 #include <Edi/GuiHelper.h>
 #include <Edi/EdiBuffer.h>
+#include <Edi/EdiController.h>
 
 #include <FL/Fl_Native_File_Chooser.H>
 #include <FL/Fl_Menu_Bar.H>
@@ -27,20 +28,18 @@ void ProjectEventController::onNewFile( Fl_Widget*, void* ) {
 }
 
 void ProjectEventController::onOpenFile( Fl_Widget* p, void* )  {
+    //ask for file to open:
     Fl_Native_File_Chooser fnfc;
     fnfc.title( "Open file" );
     fnfc.type( Fl_Native_File_Chooser::BROWSE_FILE );
     if ( fnfc.show() ) return;
 
-    EdiBuffer* pBuf = new EdiBuffer();
-    pBuf->loadfile( fnfc.filename() );
-
     //get last focused EdiTabs and add a new EdiTabTile
     EdiTabs* pTabs = GuiHelper::inst().getLastFocusedEdiTabs( p );
     EdiTabTile* pTabTile = pTabs->addEdiTabTile( fnfc.filename() );
-    pTabTile->setBuffer( pBuf );
     
-    //load_file(fnfc.filename(), -1);
+    //create an EdiController and let it do the work
+    EdiController* pEc = new EdiController( pTabTile, fnfc.filename() );
 }
 
 void ProjectEventController::onSaveFile( Fl_Widget*, void* ) {

@@ -3,16 +3,17 @@
 
 #include <string>
 
+class EdiTabTile;
 class Editor;
 class EdiBuffer;
 class Fl_Widget;
 
 class EdiController {
     public:
-        EdiController( Editor* );
+        EdiController( EdiTabTile*, const char* pFilename=NULL );
         ~EdiController();
         EdiBuffer* getCodeBuffer() const { return _pBuf; }
-        void loadFile( const char* pFilename, int ipos = -1 );
+        void loadFile();
         bool isLoading() { return _loading; }
         static void changed_cb( int, int nInserted, int nDeleted,int, const char*, void* p );
         void saveFile( const char* pFilename );
@@ -29,8 +30,9 @@ class EdiController {
         static void saveas_cb(  Fl_Widget*, void* );
     private:
         std::string _filename;
-        Editor* _pEdi = 0;
-        EdiBuffer* _pBuf = 0;
+        EdiTabTile* _pTabTile = NULL;
+        Editor* _pEdi = NULL;
+        EdiBuffer* _pBuf = NULL;
         bool _loading = false;
         bool _changed = false;
 };

@@ -6,6 +6,7 @@
 
 class EdiGrp;
 class EdiBuffer;
+class Editor;
 
 /**
  * EdiTabTile is the content of each Tab in EdiTabs.
@@ -22,6 +23,7 @@ public:
     EdiGrp* getEdiGrp( whichGrp grp ) const;
     EdiGrp* getLastFocusedEdiGrp() const;
     void setBuffer( EdiBuffer* );
+    Editor* getEditor( whichGrp grp = TOP );
 private:
     EdiGrp* _pEdiGrpTop;
     EdiGrp* _pEdiGrpBottom;

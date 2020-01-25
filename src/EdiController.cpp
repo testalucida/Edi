@@ -1,19 +1,22 @@
 #include <Edi/EdiController.h>
 #include <Edi/EdiBuffer.h>
 #include <Edi/Editor.h>
+#include <Edi/EdiTabTile.h>
+#include <Edi/EdiTabs.h>
 #include <FL/fl_ask.H>
 #include <FL/Fl_Native_File_Chooser.H>
 
-EdiController::EdiController( Editor* pEdi ) 
-: _pEdi( pEdi )
+
+EdiController::EdiController( EdiTabTile* tabtile, const char* pFilename ) 
+: _pTabTile( tabtile )
 {
-    _pBuf = new EdiBuffer();
-    _pEdi->setBuffer( _pBuf );
-    _pBuf->add_modify_callback( changed_cb, this );
+    if( pFilename ) {
+         _filename = pFilename;
+    }
 }
 
 /**
- * checks if there any unsaved changes.
+ * checks if there are any unsaved changes.
  * If so, asks if to save and calls save_cb if necessary.
  * Return true if
  *    - no unsaved changes
@@ -37,25 +40,22 @@ bool EdiController::checkSave() {
     return rc == 2 ? true : false;
 }
 
-void EdiController::loadFile( const char* pFilename, int ipos ) {
+void EdiController::loadFile() {
+    //create buffer:
+    _pBuf = new EdiBuffer();
+    _pBuf->add_modify_callback( changed_cb, this );
+    //make buffer load file:
     _loading = true;
-    bool insert = (ipos != -1);
-    if( !insert ) _filename.clear();
-    int rc;
-    if( !insert ) {
-        rc = _pBuf->loadfile( pFilename );
-    } else {
-        rc = _pBuf->insertfile( pFilename, ipos );
-    }
+    int rc = _pBuf->loadfile( _filename.c_str() );
     _changed = ( _changed || _pBuf->input_file_was_transcoded );
     if( rc ) {
         fl_alert( "Error reading from file \'%s\':\n%s.", 
-                  pFilename, strerror(errno) );
-    } else {
-        if( !insert ) {
-            _filename.append( pFilename );
-        }
-    }
+                  _filename.c_str(), strerror(errno) );
+        return;
+    } 
+    
+    _pEdi = _pTabTile->getEditor();
+    _pEdi->setBuffer( _pBuf );
     _loading = false;
     _pBuf->call_modify_callbacks();
 }
