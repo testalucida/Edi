@@ -5,6 +5,7 @@
 #include <Edi/constants.h>
 #include <Edi/enums.h>
 
+
 class Explorer;
 class EdiTabs;
 class Editor;
@@ -19,6 +20,7 @@ class MainTile : public Fl_Tile {
     public:
         MainTile( int x, int y, int w, int h );
         ~MainTile() {}
+        EdiTabs* getLastFocusedEdiTabs();
     private:
         Explorer* _pExplorer;
         EdiTabs* _pEdiTabsLeft;

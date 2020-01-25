@@ -7,6 +7,7 @@
  */
 
 //#include "mainwindow.h"
+#include <Edi/MainWindow.h>
 #include <Edi/MenuBar.h>
 #include <Edi/EdiGrp.h>
 #include <Edi/includes.h>
@@ -25,6 +26,7 @@
 #include <cstdlib>
 
 using namespace std;
+
 
 void win_cb( Fl_Widget* pWin, void* ) {
   int result = fl_choice("Do you want to save before quitting?", 
@@ -46,15 +48,16 @@ void win_cb( Fl_Widget* pWin, void* ) {
 
 /***********************************************************/
 int main( int argc, char** argv ) {
-  Fl_Double_Window* pWin = 
-      new Fl_Double_Window( 100, 100, 900, 700, "Tiny C++ IDE" );
-  MenuBar* pMenuBar = new MenuBar( 0, 0, 900 );
 
-  MainTile* pMainTile = new MainTile( 0, pMenuBar->h(), pWin->w(), 
-                                    pWin->h() - pMenuBar->h() );
+  MainWindow* pWin = new MainWindow( 100, 100, 900, 700 );
 
-  pWin->end();
-  pWin->resizable( pMainTile );
+  //MenuBar* pMenuBar = new MenuBar( 0, 0, 900 );
+
+//   MainTile* pMainTile = new MainTile( 0, pMenuBar->h(), pWin->w(), 
+//                                     pWin->h() - pMenuBar->h() );
+
+//   pWin->end();
+//   pWin->resizable( pMainTile );
 
 /*
   EdiController ctrl1( pMainTile->getEditor( 1 ) );

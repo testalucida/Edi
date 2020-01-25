@@ -2,6 +2,7 @@
 #define EDITAB_H
 
 #include <FL/Fl_Tabs.H>
+#include <Edi/constants.h>
 
 class EdiTabTile;
 
@@ -18,6 +19,8 @@ public:
      * The return value can never be NULL.
      */ 
     EdiTabTile* getVisibleTab();
+    void addEdiTabTile( EdiTabTile* );
+    EdiTabTile* addEdiTabTile( const char* pLbl );
 
 private:
    
